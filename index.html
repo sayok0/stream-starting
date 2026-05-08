@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Subnautica 2 Starting Soon</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    overflow:hidden;
+    font-family:'Orbitron', sans-serif;
+    background:#021018;
+    color:white;
+    width:100vw;
+    height:100vh;
+}
+
+/* ===== Animated Background ===== */
+
+.background{
+    position:fixed;
+    inset:0;
+    background:
+    radial-gradient(circle at top, rgba(0,255,255,0.08), transparent 45%),
+    linear-gradient(180deg,#03131d 0%, #021018 40%, #00070b 100%);
+}
+
+.background::before{
+    content:"";
+    position:absolute;
+    width:200%;
+    height:200%;
+    background:
+    radial-gradient(circle, rgba(0,255,255,0.05) 0%, transparent 60%);
+    animation:floatBg 18s linear infinite;
+}
+
+@keyframes floatBg{
+    from{
+        transform:translate(-10%,-10%) rotate(0deg);
+    }
+    to{
+        transform:translate(-5%,-15%) rotate(360deg);
+    }
+}
+
+/* ===== Bubbles ===== */
+
+.bubbles{
+    position:absolute;
+    inset:0;
+    overflow:hidden;
+}
+
+.bubble{
+    position:absolute;
+    bottom:-100px;
+    border-radius:50%;
+    background:rgba(120,255,255,0.12);
+    backdrop-filter:blur(2px);
+    animation:rise linear infinite;
+}
+
+@keyframes rise{
+    from{
+        transform:translateY(0);
+        opacity:0;
+    }
+
+    10%{
+        opacity:1;
+    }
+
+    to{
+        transform:translateY(-120vh);
+        opacity:0;
+    }
+}
+
+/* ===== Main Content ===== */
+
+.container{
+    position:relative;
+    z-index:5;
+
+    width:100%;
+    height:100%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
+.panel{
+    width:min(850px, 90%);
+    padding:50px;
+
+    border:1px solid rgba(0,255,255,0.18);
+
+    background:rgba(0,10,20,0.45);
+
+    backdrop-filter:blur(12px);
+
+    border-radius:30px;
+
+    box-shadow:
+    0 0 30px rgba(0,255,255,0.08),
+    inset 0 0 20px rgba(255,255,255,0.03);
+}
+
+/* ===== Title ===== */
+
+.subtitle{
+    color:#79dfff;
+    font-size:18px;
+    letter-spacing:4px;
+    margin-bottom:12px;
+    opacity:0.8;
+}
+
+.title{
+    font-size:64px;
+    font-weight:700;
+    line-height:1;
+    text-shadow:
+    0 0 12px rgba(0,255,255,0.35),
+    0 0 30px rgba(0,255,255,0.15);
+
+    animation:titlePulse 4s ease-in-out infinite;
+}
+
+@keyframes titlePulse{
+    0%,100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.02);
+    }
+}
+
+.waiting{
+    margin-top:10px;
+    font-size:24px;
+    color:#a9f6ff;
+    letter-spacing:6px;
+}
+
+/* ===== Timer ===== */
+
+.timer{
+    margin-top:40px;
+    font-size:72px;
+    font-weight:700;
+    color:#d9ffff;
+
+    text-shadow:
+    0 0 20px rgba(0,255,255,0.35);
+
+    animation:timerGlow 2s ease-in-out infinite;
+}
+
+@keyframes timerGlow{
+    0%,100%{
+        opacity:0.85;
+    }
+
+    50%{
+        opacity:1;
+    }
+}
+
+/* ===== Schedule ===== */
+
+.info{
+    margin-top:40px;
+
+    text-align:left;
+
+    background:rgba(255,255,255,0.03);
+
+    border:1px solid rgba(255,255,255,0.06);
+
+    border-radius:18px;
+
+    padding:25px 30px;
+}
+
+.info h2{
+    color:#7fefff;
+    margin-bottom:18px;
+    font-size:20px;
+}
+
+.item{
+    margin-bottom:18px;
+}
+
+.time{
+    color:#6de8ff;
+    font-size:18px;
+    margin-bottom:4px;
+}
+
+.desc{
+    color:#d8f7ff;
+    opacity:0.9;
+    line-height:1.5;
+}
+
+/* ===== Footer ===== */
+
+.footer{
+    margin-top:30px;
+    font-size:14px;
+    color:#78c8d8;
+    opacity:0.7;
+    letter-spacing:2px;
+}
+
+/* ===== Small screen ===== */
+
+@media(max-width:700px){
+
+    .title{
+        font-size:42px;
+    }
+
+    .timer{
+        font-size:52px;
+    }
+
+    .panel{
+        padding:30px;
+    }
+
+}
+
+</style>
+</head>
+<body>
+
+<div class="background"></div>
+
+<div class="bubbles" id="bubbles"></div>
+
+<div class="container">
+
+    <div class="panel">
+
+        <div class="subtitle">
+            STREAM STARTAR SNART
+        </div>
+
+        <div class="title">
+            SUBNAUTICA 2
+        </div>
+
+        <div class="waiting">
+            ALPHA VÄNTERUM
+        </div>
+
+        <div class="timer" id="timer">
+            10:00
+        </div>
+
+        <div class="info">
+
+            <h2>Dagens stream</h2>
+
+            <div class="item">
+                <div class="time">16:00</div>
+                <div class="desc">
+                    Försöker lära mig JavaScript live för första gången 😅
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="time">17:00</div>
+                <div class="desc">
+                    Väntar på att Subnautica 2 Alpha ska låsas upp
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="time">Efter release</div>
+                <div class="desc">
+                    Installerar direkt och dyker rakt ner i havet 🌊
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer">
+            HYPE LEVELS INCREASING...
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+/* ===== Countdown ===== */
+
+let totalSeconds = 600;
+
+const timer = document.getElementById("timer");
+
+function updateTimer(){
+
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+
+    timer.textContent =
+        String(minutes).padStart(2,"0")
+        + ":"
+        + String(seconds).padStart(2,"0");
+
+    if(totalSeconds > 0){
+        totalSeconds--;
+    }
+
+}
+
+setInterval(updateTimer,1000);
+
+updateTimer();
+
+/* ===== Bubbles ===== */
+
+const bubbles = document.getElementById("bubbles");
+
+function createBubble(){
+
+    const bubble = document.createElement("div");
+
+    bubble.classList.add("bubble");
+
+    const size = Math.random() * 14 + 6;
+
+    bubble.style.width = size + "px";
+    bubble.style.height = size + "px";
+
+    bubble.style.left = Math.random() * 100 + "%";
+
+    bubble.style.animationDuration =
+        (Math.random() * 10 + 8) + "s";
+
+    bubble.style.opacity =
+        Math.random() * 0.5;
+
+    bubbles.appendChild(bubble);
+
+    setTimeout(() => {
+        bubble.remove();
+    }, 18000);
+
+}
+
+setInterval(createBubble, 300);
+
+</script>
+
+</body>
+</html>
